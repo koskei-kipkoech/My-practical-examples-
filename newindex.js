@@ -62,12 +62,62 @@
 // let work = document.querySelector('#todos')
 // let newWork = work.querySelector('h4')
 // console.log(newWork.innerText = 'Sunday')
-function updateDay(day){
-    let h4 = document.querySelector('h4')
-    h4.innerHTML =`
-    <h1>${day}</h1>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Cat_August_2010-4.jpg/362px-Cat_August_2010-4.jpg"/>
-    <p>TGIF</p>
-    `
+// function updateDay(day){
+//     let h4 = document.querySelector('h4')
+//     h4.innerHTML =`
+//     <h1>${day}</h1>
+//     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Cat_August_2010-4.jpg/362px-Cat_August_2010-4.jpg"/>
+//     <p>TGIF</p>
+//     `
+// }
+// updateDay('Sunday')
+
+//new
+
+
+//create an alert
+// document.querySelector('#alert').addEventListener('click', alertMe)
+
+// function alertMe(){
+//     return alert('Hi! I was clicked')
+// } 
+
+// document.querySelector('#log').addEventListener('click',()=> console.log('I have been loged'))
+
+// //callback that delete task
+// function handleDelete(e){
+//     e.target.parentNode.remove()
+// }
+
+// //grab button and delete parent nodes.
+// function addEventListenerDeleteButton(){
+//     let buttons = document.getElementsByClassName('delete-btn')
+//     for(let btn of buttons){
+//         btn.addEventListener('click', handleDelete)
+//     }
+// }
+// addEventListenerDeleteButton()
+
+document.addEventListener('DOMContentLoaded', ()=> {
+    let form = document.querySelector('form')
+    form.addEventListener('submit',(e) => {
+        e.preventDefault()
+        buildToDo(e.target.new_todo.value)
+        form.reset()
+    })
+})
+
+function buildToDo(todo){
+    let p = document.createElement('p')
+    let btn = document.createElement('button')
+    btn.addEventListener('click',handleDelete)
+    btn.textContent = ' X '
+    p.textContent = ` ${todo} `
+    p.appendChild(btn)
+    console.log(p)
+    document.querySelector("#todo_container").appendChild(p)
 }
-updateDay('Sunday')
+
+function handleDelete(e){
+    e.target.parentNode.remove()
+}
